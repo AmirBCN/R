@@ -15,6 +15,8 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
     #  }
     #}
     
+    
+    
     DataClean <- na.omit(Data[pollutant])
     SUM <- SUM + as.numeric(colSums(DataClean))
     LG <- LG + nrow(DataClean)

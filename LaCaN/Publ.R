@@ -72,35 +72,35 @@ for (i in UPClink)
        }
        else # Checking for a pdf
        {
-               tryCatch({
-                       URL <- ""        
-                       #URL <- DataLC$URL[j]
-                       #URLpage <- readLines(URL)
-                       #if (length(grep(".pdf", URLpage)) == 0 & length(grep(".PDF", URLpage)) == 0)
-                       #{
-                        #       print(c("PDF Error", DataLC$Code[j]))  
-                       #}
-                       #URL <- DataLC$URL[j]
-                       ##################################
-                       URL <- DataLC$Link[j]
-                       URLpage <- readLines(URL)
-                       if (length(grep("Laboratori de C", URLpage)) == 0 & length(grep("LaC", URLpage)) == 0)
-                       {
-                               temp <- article_retrieval(DataLC$DOI[j], identifier = "doi", verbose = FALSE)
-                               urlfind <- str_extract(temp, url_pattern)
-                               ID <- grep("https://www", urlfind)
-                               if(length(ID) != 0)
-                               {
-                               URLpage <- readLines(urlfind[ID])
-                               }
-                               if (length(grep("Laboratori de C", URLpage)) == 0 & length(grep("LaC", URLpage)) == 0)
-                               {
-                                       print(c("LaCaN Error", DataLC$Code[j]))
-                                       #print(c("LaCaN Error", DataLC$Code[j] ,  DataLC$Link[j]))
-                               }
-                       ##################################
-                       }
-               }, error=function(e){print(c("HANDLE ERROR", DataLC$Code[j]))})                
+               # tryCatch({
+               #         URL <- ""        
+               #         #URL <- DataLC$URL[j]
+               #         #URLpage <- readLines(URL)
+               #         #if (length(grep(".pdf", URLpage)) == 0 & length(grep(".PDF", URLpage)) == 0)
+               #         #{
+               #          #       print(c("PDF Error", DataLC$Code[j]))  
+               #         #}
+               #         #URL <- DataLC$URL[j]
+               #         ##################################
+               #         URL <- DataLC$Link[j]
+               #         URLpage <- readLines(URL)
+               #         if (length(grep("Laboratori de C", URLpage)) == 0 & length(grep("LaC", URLpage)) == 0)
+               #         {
+               #                 temp <- article_retrieval(DataLC$DOI[j], identifier = "doi", verbose = FALSE)
+               #                 urlfind <- str_extract(temp, url_pattern)
+               #                 ID <- grep("https://www", urlfind)
+               #                 if(length(ID) != 0)
+               #                 {
+               #                 URLpage <- readLines(urlfind[ID])
+               #                 }
+               #                 if (length(grep("Laboratori de C", URLpage)) == 0 & length(grep("LaC", URLpage)) == 0)
+               #                 {
+               #                         print(c("LaCaN Error", DataLC$Code[j]))
+               #                         #print(c("LaCaN Error", DataLC$Code[j] ,  DataLC$Link[j]))
+               #                 }
+               #         ##################################
+               #         }
+               # }, error=function(e){print(c("HANDLE ERROR", DataLC$Code[j]))})                
        }
        j = j+1
        #print(j)

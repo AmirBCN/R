@@ -54,6 +54,20 @@ for (i in UPClink)
                {
                        print(DataLC$Code[j])  
                }
+               else{
+                       temp <- article_retrieval(DataLC$DOI[j], identifier = "doi", verbose = FALSE)
+                       urlfind <- str_extract(temp, url_pattern)
+                       ID <- grep("https://www", urlfind)
+                       if(length(ID) != 0)
+                       {
+                               URLpage <- readLines(urlfind[ID])
+                       }
+                       if (length(grep("Labratori de C", URLpage)) != 0 | length(grep("LaC", URLpage)) != 0)
+                       {
+                               print(DataLC$Code[j])  
+                       }
+               }
+                       
                }, error=function(e){print(c("Link ERROR", DataLC$Code[j]))})
        }
        else # Checking for a pdf
@@ -81,13 +95,15 @@ for (i in UPClink)
                                }
                                if (length(grep("Laboratori de C", URLpage)) == 0 & length(grep("LaC", URLpage)) == 0)
                                {
-                                       print(c("LaCaN Error", DataLC$Code[j] ,  DataLC$Link[j]))
+                                       print(c("LaCaN Error", DataLC$Code[j]))
+                                       #print(c("LaCaN Error", DataLC$Code[j] ,  DataLC$Link[j]))
                                }
+                       ##################################
                        }
                }, error=function(e){print(c("HANDLE ERROR", DataLC$Code[j]))})                
        }
        j = j+1
-       print(j)
+       #print(j)
 }
 
 

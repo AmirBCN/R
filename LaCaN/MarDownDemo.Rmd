@@ -1,0 +1,20 @@
+My First MarkDown File
+============================
+
+This is my first R markdown file
+
+Here, we are going to load some data
+
+```{r}
+
+library(datasets)
+data(airquality)
+summary(airquality)
+
+```
+
+Let's make a pairs plot of data.
+
+```{r}
+pairs(airquality)
+```
